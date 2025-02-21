@@ -6,14 +6,14 @@ exports.processData = (req, res) => {
         }
 
         const numbers = data.filter((item) => !isNaN(item));
-        const alphabets = [];
+        const allAlphabets = [];
         data.forEach((item) => {
             if (/^[a-zA-Z]$/.test(item)) {
-                alphabets.push(item);
+                allAlphabets.push(item);
             }
         });
-        const allAlphabets = [...alphabets];
-        const highestAlphabet = alphabets.length > 0 ? [alphabets.sort().pop()] : [];
+        const alphabets = [...allAlphabets];
+        const highestAlphabet = allAlphabets.length > 0 ? [allAlphabets.sort().pop()] : [];
 
         res.json({
             is_success: true,
@@ -21,7 +21,7 @@ exports.processData = (req, res) => {
             email: "sanyam@example.com",
             roll_number: "ABC123",
             numbers,
-            allAlphabets,
+            alphabets,
             highest_alphabet: highestAlphabet,
         });
     } catch (error) {
